@@ -18,6 +18,7 @@ public class BlazingPickaxe extends Tool {
         setMaterial(Material.DIAMOND_PICKAXE);
         setUpgradeLevel(0);
         setName("炽热之镐");
+        setMaxLevel(5);
     }
 
     @Override
@@ -86,8 +87,4 @@ public class BlazingPickaxe extends Tool {
         return 0.3 + lvl * 0.1;
     }
 
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
 }

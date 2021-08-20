@@ -15,10 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * 代表一个物品的JavaBean
- * @author FusionFish
- */
 public abstract class Item<T extends Event> {
 
     public static final NamespacedKey KEY_UUID = new NamespacedKey(SakuraRPG.getInstance(), "uuid");

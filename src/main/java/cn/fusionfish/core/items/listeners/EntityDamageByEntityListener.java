@@ -2,17 +2,19 @@ package cn.fusionfish.core.items.listeners;
 
 import cn.fusionfish.core.items.Item;
 import cn.fusionfish.core.items.ItemManager;
-import cn.fusionfish.core.items.customized.tools.Tool;
+import cn.fusionfish.core.items.customized.weapons.Weapon;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockBreakListener implements Listener {
+public class EntityDamageByEntityListener implements Listener {
     @EventHandler
-    public void onBreak(@NotNull BlockBreakEvent event) {
-        Player player = event.getPlayer();
+    public void onDamage(@NotNull EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player player)) {
+            return;
+        }
 
         Item<?> item = ItemManager.getInstance().getItem(player);
 
@@ -20,10 +22,10 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        if (!(item instanceof Tool tool)) {
+        if (!(item instanceof Weapon weapon)) {
             return;
         }
 
-        tool.execute(event);
+        weapon.execute(event);
     }
 }

@@ -9,6 +9,7 @@ public abstract class Weapon extends Item<EntityDamageByEntityEvent> implements 
 
     private int level;
     private float damage;
+    private int maxLevel = 5;
 
     @Override
     public void setDamage(float damage) {
@@ -36,6 +37,11 @@ public abstract class Weapon extends Item<EntityDamageByEntityEvent> implements 
 
     @Override
     public int getMaxLevel() {
-        return 5;
+        return maxLevel;
+    }
+
+    @Override
+    public void setMaxLevel(int level) {
+        maxLevel = level;
     }
 }

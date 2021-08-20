@@ -7,6 +7,7 @@ public interface Upgradable {
     int getUpgradeLevel();
     void setUpgradeLevel(int level);
     int getMaxLevel();
+    void setMaxLevel(int level);
 
     default void upgrade() {
         int level = getUpgradeLevel();
