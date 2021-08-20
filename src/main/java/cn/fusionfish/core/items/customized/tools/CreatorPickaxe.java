@@ -1,6 +1,8 @@
 package cn.fusionfish.core.items.customized.tools;
 
+import cn.fusionfish.core.SakuraRPG;
 import com.google.common.collect.Sets;
+import net.coreprotect.CoreProtectAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,6 +18,8 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 public class CreatorPickaxe extends Tool {
+
+    private static final CoreProtectAPI api = SakuraRPG.getCoreProtectAPI();
 
     public CreatorPickaxe() {
         setMaterial(Material.DIAMOND_PICKAXE);
@@ -62,8 +66,14 @@ public class CreatorPickaxe extends Tool {
             location.add(direction);
             blocks.add(location.getBlock());
         }
-        //TODO 兼容CoreProtect
-        blocks.forEach(b -> b.breakNaturally(itemStack, true));
+
+        //兼容CoreProtect
+        blocks.forEach(b -> {
+            b.breakNaturally(itemStack, true);
+            if (api != null) {
+                api.logRemoval(player.getName(), b.getLocation(), b.getType(), b.getBlockData());
+            }
+        });
     }
 
     private static void mineVein(@NotNull Player player, @NotNull Block block) {
@@ -92,8 +102,13 @@ public class CreatorPickaxe extends Tool {
                 nearOres.forEach(stack::push);
             }
         }
-        //TODO 兼容CoreProtect
-        buffer.forEach(b1 -> b1.breakNaturally(itemStack, true));
+        //兼容CoreProtect
+        buffer.forEach(b1 -> {
+            b1.breakNaturally(itemStack, true);
+            if (api != null) {
+                api.logRemoval(player.getName(), b1.getLocation(), b1.getType(), b1.getBlockData());
+            }
+        });
     }
 
     private static boolean isOre(@NotNull Material material) {

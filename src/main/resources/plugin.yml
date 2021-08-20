@@ -2,6 +2,8 @@ name: SakuraRPG
 main: cn.fusionfish.core.SakuraRPG
 version: 1.0
 api-version: 1.17
+softdepend:
+  - CoreProtect
 authors:
   - FusionFish
   - EnTIv
