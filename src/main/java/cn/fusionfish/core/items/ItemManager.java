@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,7 +19,6 @@ import java.util.UUID;
 
 import static cn.fusionfish.core.items.Item.KEY_TYPE;
 import static cn.fusionfish.core.items.Item.KEY_UUID;
-import static cn.fusionfish.libs.utils.MessageUtil.log;
 
 public class ItemManager {
     private final Map<UUID, Item<? extends Event>> itemMap = Maps.newHashMap();
@@ -89,7 +89,21 @@ public class ItemManager {
         return buffer;
     }
 
-    public static ItemManager getInstance() {
+    @Nullable
+    @SuppressWarnings("unchecked")
+    public static Item<?> getItem(String category, String simpleName){
+        String className = "cn.fusionfish.core.items.customized." + category + "." + simpleName;
+        try {
+            Class<Item<?>> clazz = (Class<Item<?>>) Class.forName(className);
+            return clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    @Contract(pure = true)
+    public static @NotNull ItemManager getInstance() {
         return SakuraRPG.getItemManager();
     }
 }
