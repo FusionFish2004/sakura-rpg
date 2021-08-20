@@ -61,8 +61,8 @@ public class ItemManager {
 
         String type = container.get(KEY_TYPE, PersistentDataType.STRING);
         try {
-            Class<? extends Item<? extends Event>> clazz = (Class<? extends Item<? extends Event>>) Class.forName(type);
-            Item<? extends Event> item = clazz.getDeclaredConstructor().newInstance();
+            Class<? extends Item<?>> clazz = (Class<? extends Item<?>>) Class.forName(type);
+            Item<?> item = clazz.getDeclaredConstructor().newInstance();
             //设置物品名
             if (meta.hasDisplayName()) {
                 item.setName(meta.getDisplayName());
