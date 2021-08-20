@@ -1,7 +1,6 @@
 package cn.fusionfish.core.command;
 
 import cn.fusionfish.core.items.customized.tools.BlazingPickaxe;
-import cn.fusionfish.core.items.customized.tools.GodPickaxe;
 import cn.fusionfish.libs.command.SimpleCommand;
 import org.bukkit.entity.Player;
 

@@ -85,4 +85,9 @@ public class BlazingPickaxe extends Tool {
     private static double getExplodePercentage(int lvl) {
         return 0.3 + lvl * 0.1;
     }
+
+    @Override
+    public int getMaxLevel() {
+        return 5;
+    }
 }

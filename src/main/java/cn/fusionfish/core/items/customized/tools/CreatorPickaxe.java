@@ -15,9 +15,9 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class GodPickaxe extends Tool {
+public class CreatorPickaxe extends Tool {
 
-    public GodPickaxe() {
+    public CreatorPickaxe() {
         setMaterial(Material.DIAMOND_PICKAXE);
         setUpgradeLevel(0);
         setName("创世神之镐");
@@ -124,5 +124,10 @@ public class GodPickaxe extends Tool {
 
     private static double getVeinMineRate(int lvl) {
         return 0.6 + lvl * 0.1;
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return 5;
     }
 }
